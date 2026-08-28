@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>애플 클론 코딩</title>
+    <style>
+      /* CSS 변수 : 색상 테마를 한 곳에서 관리 
+         :root 는 html 요소를 가리키며, 여기 선언한 변수는 
+         모든 하위 요소가 물려 받는다.  
+      */
+      :root {
+        --apple-black: #000000;
+        --apple-gray: #86868b;
+        --apple-blue: #0071e3;
+        --apple-white: #f5f5f5;
+        --card-bg: #1d1d1f;
+
+        --header-height: 56px;
+      }
+
+      /* 리셋 / 전역스타일 */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      body {
+        background: var(--apple-black);
+        color: var(--apple-white);
+      }
+
+      /* 컴포넌트 - 헤더 영역(고정 네비게이션) */
+      .site-header {
+        height: var(--header-height);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 30px;
+
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+
+        background-color: rgba(0, 0, 0, 0.5);
+        /* 요소 뒤에 있는 배경에 필터를 건다
+          blur(10px)는 뒤 내용을 10만튼 흐리게 만든다
+          반투명 배경색과 함께 쓰면 유리판 같은 느낌이 난다. 
+        */
+        backdrop-filter: blur(6px);
+        /* z-index: 다른 요소 위에 항상 보이도록 함
+           단, positon이 지정된 요소에만 적용이 됩니다
+         */
+        z-index: 100;
+      }
+
+      .nav-logo {
+        font-size: 20px;
+        font-weight: bold;
+      }
+      .nav a {
+        color: var(--apple-gray);
+        margin-left: 25px;
+      }
+
+      .nav a:hover {
+        color: white;
+      }
+
+      /* 컴포넌트 메인 : hero 섹션 */
+
+      /* fixed 헤더가 가려지지 않도록 본문 전체를 헤더 높이만큼 밀어 낸다 */
+      main {
+        padding-top: var(--header-height);
+      }
+
+      .hero {
+        /* 100vh를 그대로 쓰면 패딩탑이 더해져서 화면 보다 더 크게 보인다 */
+        height: calc(100vh - var(--header-height));
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .hero h1 {
+        font-size: 56px;
+        margin-bottom: 15px;
+      }
+
+      .hero p {
+        font-size: 26px;
+        margin-bottom: 30px;
+        color: var(--apple-gray);
+      }
+
+      .btn {
+        padding: 12px 24px;
+        border-radius: 24px;
+      }
+
+      .btn-primary {
+        background-color: var(--apple-blue);
+        color: white;
+        margin-right: 15px;
+
+        transition: opacity 0.3s ease;
+      }
+
+      .btn-secondary {
+        color: var(--apple-blue);
+        border: 1px solid var(--apple-blue);
+
+        transition:
+          background-color 0.3s ease,
+          color 0.3s ease;
+      }
+
+      /* 컴포넌트 - 주요 특징 카드   */
+
+      /* 레이아웃 */
+      .features {
+        padding: 80px 30px;
+        text-align: center;
+      }
+
+      .feature-cards {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+
+      /* 컴포넌트 스타일 */
+      .features h2 {
+        font-size: 36px;
+        margin-bottom: 40px;
+      }
+
+      .feature-card {
+        background-color: var(--card-bg);
+        padding: 40px;
+        border-radius: 16px;
+        text-align: center;
+        /* 카드 폭을 지정하지 않으면 텍스트 길이에 따라서 
+        제각각 크기를 가질 수 있다. flex-basis로 기준 크기를 주고
+        grow : 0으로 둬서 남는 공간에 따라 늘어나지 않기 할 수 있다.
+         */
+        flex: 0 1 260px;
+      }
+
+      .feature-card h3 {
+        font-size: 20px;
+        margin-bottom: 10px;
+      }
+
+      .feature-card p {
+        color: var(--apple-gray);
+        font-size: 15px;
+      }
+
+      /* 세부 조정 */
+      .btn-primary:hover {
+        opacity: 0.8;
+      }
+
+      .btn-secondary:hover {
+        background-color: var(--apple-blue);
+        color: white;
+      }
+      .feature-card {
+        transition: transform 0.3 ease;
+      }
+      .feature-card:hover {
+        transform: scale(1.1);
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+      }
+
+      /* 반응 처리 */
+      
+    </style>
+  </head>
+  <body>
+    <!-- 헤더 영역  -->
+    <header class="site-header">
+      <span class="nav-logo">Apple</span>
+      <nav class="nav">
+        <a href="#">iPhone</a>
+        <a href="#">Mac</a>
+        <a href="#">iPad</a>
+      </nav>
+    </header>
+    <!-- 메인 영역  -->
+    <main>
+      <section class="hero">
+        <h1>iPhone 17 Pro</h1>
+        <p>지금까지와는 차원 다른</p>
+        <div class="hero-buttons">
+          <a href="#" class="btn btn-primary">더 알아보기</a>
+          <a href="#" class="btn btn-secondary">구입하기</a>
+        </div>
+      </section>
+      <section class="features">
+        <h2>주요 특징</h2>
+        <div class="feature-cards">
+          <!-- 카드 1 -->
+          <div class="feature-card">
+            <h3>48MP 카메라</h3>
+            <p>프로급 사진을 찍어보세요</p>
+          </div>
+          <!-- 카드 2 -->
+          <div class="feature-card">
+            <h3>A18 Pro 칩</h3>
+            <p>가장 빠른 모방리 칩</p>
+          </div>
+          <!-- 카드 3 -->
+          <div class="feature-card">
+            <h3>하루 종일 배터리</h3>
+            <p>충전 걱정 없이</p>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- 푸터 영역 -->
+    <footer>
+      <p>clone coding practice</p>
+    </footer>
+  </body>
+</html>

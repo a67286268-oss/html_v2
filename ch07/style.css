@@ -1,0 +1,160 @@
+/* 1단계 : 리셋 전역 스타일 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family:
+    "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  background-color: #f5f5f5;
+}
+
+/* 컴포넌트 : 헤더 (로더 + 검색창) */
+
+/* 2단계 레이아웃 */
+.header {
+  display: flex;
+  padding: 12px 20px;
+  align-items: center;
+  gap: 20px;
+  background-color: #0073e9;
+}
+/* 3단계 컴포넌트 스타일 */
+.logo {
+  color: white;
+  font-size: 24px;
+}
+
+.search-bar {
+  display: flex;
+  flex: 1;
+}
+
+.search-bar input {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  /* 4개 사용 시 값 순서 좌상 -> 우상 -> 우하 -> 좌하 (시계 방향) */
+  border-radius: 4px 0 0 4px;
+}
+
+.search-bar button {
+  padding: 10px 20px;
+  background-color: white;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+}
+
+/* 컴포넌트 : 상품 목록 (상품 카드) */
+
+/* 2단계 레이아웃 */
+
+.section-title {
+  padding: 20px;
+  font-size: 20px;
+}
+
+.product-grid {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 20px;
+  gap: 16px;
+}
+
+.product-card {
+  /* calc() : CSS 안에서 계산을 수행하는 함수 
+     한 줄에 3개를 넣으려면 카드 사이 간격 2개를 계산 해야 함   
+     전체 폭에서 사이 간격을 뺀 뒤 3으로 나눈다. 
+  */
+  width: calc((100% - 32px) / 3);
+}
+
+/* 3단계 - 컴포넌트 스타일  */
+.product-card {
+  background-color: white;
+  border-radius: 4px;
+  padding: 15px;
+}
+
+.product-card img {
+  width: 100%;
+  border-radius: 4px;
+  /*tip : 이미지의 display 기본속성은 inline 입니다 
+    아래에 미세한 여벽이 생긴다. block 으로 바꾸면 사라짐 
+   */
+  display: block;
+}
+.product-card h3 {
+  font-size: 14px;
+  /*
+    상 우 아래 좌     
+  */
+  margin: 10px 0 5px 0;
+}
+
+/* 컴포넌트 - 가격 영역 */
+.price-original {
+  text-decoration: line-through;
+  color: #999;
+  font-size: 13px;
+}
+
+.price-sale {
+  font-size: 18px;
+  font-weight: bold;
+  color: #111;
+}
+.discount {
+  color: #ff0000;
+}
+
+.rating {
+  color: #ff9500;
+  font-size: 13px;
+}
+
+.delivery {
+  color: #0073e9;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.product-card {
+  /* position: relative 는 자식 absolute 의 기준 점이 된다 */
+  position: relative;
+}
+
+.badge {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  padding: 4px 8px;
+  font-size: 10px;
+  font-weight: bold;
+  border-radius: 4px;
+}
+
+.badge-rocket {
+  background-color: #0073e9;
+  color: white;
+}
+.badge-sale {
+  top: 45px;
+  background-color: red;
+  color: white;
+}
+
+/* 4단계 세부 조정 */
+.product-card {
+  transition:
+    transform 0.8s ease,
+    box-shadow 0.8s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
