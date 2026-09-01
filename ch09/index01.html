@@ -11,52 +11,166 @@
         --gh-blue: #58a6ff;
         --gh-border: #30363d;
         --gh-text: #c9d1d9;
+      }
 
-        * {
-          margin: 0;
-          padding: 0;
-          box-sizing: border-box;
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background-color: var(--gh-dark);
+        color: var(--gh-text);
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      /* 컴포넌트 - 헤더 */
+      .gh-header {
+        display: flex;
+        align-items: center;
+        padding: 15px 20px;
+        gap: 20px;
+        background-color: var(--gh-card);
+        border-bottom: 1px solid var(--gh-border);
+      }
+
+      .gh-logo {
+        color: white;
+        font-size: 20px;
+        font-weight: bold;
+      }
+      .gh-search {
+        flex: 1;
+        max-width: 400px;
+        padding: 8px;
+        background-color: var(--gh-dark);
+        border: 1px solid var(--gh-border);
+        color: white;
+        border-radius: 6px;
+      }
+
+      /* 컴포넌트 - 프로필레이아웃 (2단구조)  */
+      .profile-layout {
+        display: flex;
+        max-width: 1200px;
+        margin: 0 auto;
+
+        padding: 20px;
+        gap: 24px;
+      }
+
+      /* 2단구조 잡기 사이드바(고정) + 메인컨텐츠 */
+      .sidebar {
+        flex: 0 0 300px;
+      }
+
+      .main-content {
+        flex: 1;
+      }
+
+      /* 컴포넌트 스타일 - 사이드 바  */
+      .avatar {
+        width: 80%;
+        border-radius: 50%;
+        border: 1px solid var(--gh-border);
+        /* 이미지 속성을 block 변경 */
+        display: block;
+      }
+      .sidebar h2 {
+        font-size: 24px;
+        margin-top: 15px;
+        color: white;
+      }
+      .username {
+        color: var(--gh-blue);
+        font-size: 18px;
+        margin-top: 4px;
+      }
+      .biography {
+        margin: 12px 0;
+        /* 줄간격 (여러 줄 텍스트들이 있을 때 가독성위해 사용 함) */
+        line-height: 1.5;
+      }
+      .follow-info {
+        font-size: 14px;
+        margin-bottom: 12px;
+      }
+
+      .follow-info strong {
+        color: white;
+      }
+
+      .skills-badge {
+        /* span은 inline 기본 속성이라서 상하 패딩이 제대로 안먹 힌다. */
+        display: inline-block;
+        padding: 4px 10px;
+        font-size: 12px;
+        border-radius: 20px;
+      }
+
+      .skills-badge.html {
+        background-color: #e34f26;
+        color: white;
+      }
+      .skills-badge.css {
+        background-color: #1572b6;
+        color: white;
+      }
+      .skills-badge.js {
+        background-color: #f7df1e;
+        color: white;
+      }
+
+      /* 컴포넌트 - 메인 영역  */
+      .main-content h3 {
+        /* 상 오른쪽 아래  */
+        margin: 20px 0 10px;
+        color: white;
+        font-size: 20px;
+      }
+
+      .grass-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 3px;
+        margin: 15px 0;
+        max-width: 87px;
+      }
+
+      .grass {
+        width: 12px;
+        height: 12px;
+        border-radius: 2px;
+        flex-shrink: 0;
+      }
+      .level-0 {
+        background: var(--gh-card);
+      }
+      .level-1 {
+        background: #0e4429;
+      }
+      .level-2 {
+        background: #39d353;
+      }
+
+      .repo-card {
+        border: 1px solid var(--gh-border);
+        padding: 16px;
+        border-radius: 6px;
+        margin-bottom: 12px;
+      }
+      /* 상세 조정 (도전 과제) */
+
+      /* 반응형 처리 */
+      @media (max-width: 768px) {
+        .profile-layout {
+          flex-direction: column;
         }
 
-        body {
-          background-color: var(--gh-dark);
-          color: var(--gh-text);
-          font-family:
-            system-ui,
-            -apple-system,
-            BlinkMacSystemFont,
-            "Segoe UI",
-            Roboto,
-            Oxygen,
-            Ubuntu,
-            Cantarell,
-            "Open Sans",
-            "Helvetica Neue",
-            sans-serif;
-        }
-
-        .gh-header {
-          display: flex;
-          align-items: center;
-          padding: 15px 20px;
-          gap: 20px;
-          background-color: var(--gh-card);
-          border-bottom: 1px solid var(--gh-border);
-        }
-
-        .gh-logo {
-            color: white;
-            font-size: 20px;
-            font-weight: bold;
-        }
-        .gh-search {
-            flex: 1;
-            max-width: 400px;
-            padding: 8px;
-            background-color: var(--gh-dark);
-            border: 1px solid var(--gh-border);
-            color: white;
-            border-radius: 6px;
+        .avatar {
+          max-width: 200px;
+          margin: 0 auto;
         }
       }
     </style>

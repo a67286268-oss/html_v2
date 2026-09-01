@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="app-layout">
+      <aside class="sidebar">
+        <h1 class="logo">Spotify</h1>
+        <nav class="nav-menu">
+          <a href="#" class="nav-item active">홈</a>
+          <a href="#" class="nav-item">검색</a>
+          <a href="#" class="nav-item">라이브러리</a>
+        </nav>
+        <div class="player-list">
+          <h3>내 플레이어리스트</h3>
+          <a href="#" class="playerlist-item">오늘의 기분</a>
+          <a href="#" class="playerlist-item">운동할 때</a>
+          <a href="#" class="playerlist-item">공부할 때</a>
+          <a href="#" class="playerlist-item">드라이브</a>
+          <a href="#" class="playerlist-item">잠들기 전</a>
+          <a href="#" class="playerlist-item">비 오는 날</a>
+          <a href="#" class="playerlist-item">출근길</a>
+          <a href="#" class="playerlist-item">재즈 모음</a>
+        </div>
+      </aside>
+      <main class="main-content">
+        <h2>인기앨범</h2>
+        <!-- flex-wrap 으로 앨범 그리드 배치 -->
+        <div class="album-grid">
+          <div class="album-card">
+            <img src="https://placehold.co/200x200" alt="" />
+            <h4>Midnight Vibes</h4>
+            <p>Various Artists</p>
+          </div>
+
+          <div class="album-card">
+            <img src="https://placehold.co/200x200" alt="" />
+            <h4>Midnight Vibes</h4>
+            <p>Various Artists</p>
+          </div>
+
+          <div class="album-card">
+            <img src="https://placehold.co/200x200" alt="" />
+            <h4>Midnight Vibes</h4>
+            <p>Various Artists</p>
+          </div>
+
+          <div class="album-card">
+            <img src="https://placehold.co/200x200" alt="" />
+            <h4>Midnight Vibes</h4>
+            <p>Various Artists</p>
+          </div>
+
+          <div class="album-card">
+            <img src="https://placehold.co/200x200" alt="" />
+            <h4>Midnight Vibes</h4>
+            <p>Various Artists</p>
+          </div>
+
+          <div class="album-card">
+            <img src="https://placehold.co/200x200" alt="" />
+            <h4>Midnight Vibes</h4>
+            <p>Various Artists</p>
+          </div>
+
+          <div class="album-card">
+            <img src="https://placehold.co/200x200" alt="" />
+            <h4>Midnight Vibes</h4>
+            <p>Various Artists</p>
+          </div>
+
+          <div class="album-card">
+            <img src="https://placehold.co/200x200" alt="" />
+            <h4>Midnight Vibes</h4>
+            <p>Various Artists</p>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- Player는 app-layout 밖에 두자. 
+      position: fxied를 사용할 예정이라 화면 어디에 있든 
+      하단에 붙일 수 있지만 구조적으로도 app-layout과 
+      형제 관계로 두는 것이 자연스럽다. 
+    -->
+    <div class="player">
+      <div class="player-info">
+        <img src="https://placehold.co/50x50" alt="" />
+        <div class="player-text">
+          <p class="song-text">밤편지</p>
+          <p class="song-artist">IU</p>
+        </div>
+      </div>
+      <div class="player-controls">
+        <button>&#9664;&#9664;</button>
+        <button class="play-btn">&#9654;</button>
+        <button>&#9654;&#9654;</button>
+      </div>
+      <div class="player-bar">
+        <div class="progress"></div>
+      </div>
+    </div>
+  </body>
+</html>
+

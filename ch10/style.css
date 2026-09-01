@@ -1,0 +1,301 @@
+/* ================================
+   CSS 변수: 색상 테마와 주요 치수
+================================ */
+:root {
+  --sp-black: #121212;
+  --sp-dark: #181818;
+  --sp-gray: #282828;
+  --sp-light: #b3b3b3;
+  --sp-green: #1db954;
+  --sp-white: #ffffff;
+
+  /* 플레이어 높이를 변수로 뺀다.
+     사이드바와 메인의 높이 계산에 세 번 쓰이므로,
+     숫자를 직접 적으면 하나만 고쳐도 레이아웃이 깨진다 */
+  --player-height: 80px;
+}
+
+/* 1단계 : 리셋 / 전역 스타일 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--sp-black);
+  color: var(--sp-white);
+  /* 문서 전체 스크롤을 막는다 */
+  overflow: hidden;
+  font-family:
+    "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: var(--sp-light);
+}
+
+/* (2~4 컴포넌트 별 반복) : 컴포넌트 - 사이드 바 + 메인 (독립 스크롤 생성)  */
+
+/* 2단계 레이아웃  */
+.app-layout {
+  display: flex;
+  /* 하단 플레이어 영역의 높이를 빼고 계산해야 한다. 이 높이가 있어야 
+  안에 컨텐츠들이 넘침을 판단할 수 있다 */
+  height: calc(100vh - var(--player-height));
+}
+
+.sidebar {
+  flex: 0 0 240px;
+  background-color: var(--sp-black);
+  padding: 20px;
+
+  /* 부모 컨텐이너에 높이를 100% 물려 받아 준다.  */
+  height: 100%;
+  /* 내용이 넘치면 이 안에서만 세로 스클롤이 생성 된다 */
+  overflow-y: auto;
+}
+
+.main-content {
+  flex: 1;
+  background: linear-gradient(var(--sp-dark), var(--sp-black));
+  padding: 30px;
+  height: 100%;
+  overflow-y: auto;
+}
+
+/* 3단계 컴포넌트 (내비게이션) */
+
+.logo {
+  color: var(--sp-white);
+  font-size: 24px;
+  margin-bottom: 30px;
+}
+
+.nav-item {
+  display: block;
+  padding: 10px 0;
+  font-size: 14px;
+}
+
+.nav-item.active {
+  color: var(--sp-white);
+}
+
+.player-list {
+  margin-top: 20px;
+  border-top: 1px solid var(--sp-gray);
+  padding-top: 20px;
+}
+
+.player-list h3 {
+  font-size: 13px;
+  color: var(--sp-white);
+  /* 글자 사이의 간격(자간) css 속성 - 기본값 normal */
+  letter-spacing: 1px;
+}
+
+.playerlist-item {
+  display: block;
+  padding: 6px 0;
+  font-size: 14px;
+  /* 줄과 줄 사이의 높이 (행간, 줄간격) */
+  /* line-height: 1px; */
+}
+
+/* 컴포넌트 앨범 카드 */
+
+/* 2단계 레이아웃  */
+.album-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.album-card {
+  flex: 1 1 160px;
+  max-width: 200px;
+}
+
+/* 3단계 : 컴포넌트 스타일  */
+
+.main-content h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.album-card {
+  background: var(--sp-gray);
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.album-card img {
+  width: 100%;
+  /* 1 -> 가로 세로 비율을 1:1로 고정 즉 카드 폭이 
+  변경 되더라도 항상 정사각형을 유지 한다. */
+  aspect-ratio: 1;
+  /* 비율을 유지하며 영역에 꽉 채우고 넘치는 부분을 잘라 냄 */
+  object-fit: cover;
+  border-radius: 4px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.album-card h4 {
+  font-size: 14px;
+  margin-bottom: 4px;
+
+  /* 제목이 길면 한 줄로 자르고 말 줄임표를 붙인다. */
+  /* 아래 세 속성이 함께 있어야 동작 한다 */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.album-card p {
+  font-size: 12px;
+  color: var(--sp-light);
+}
+
+/* 컴포넌트 : Player (하단 고정 바)  */
+/* 2단계 레이아웃  */
+.player {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: var(--player-height);
+
+  background: var(--sp-dark);
+  border-top: 1px solid var(--sp-gray);
+  z-index: 100;
+
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 0 20px;
+}
+
+.player-info {
+  flex: 0 0 220px;
+}
+
+.player-controls {
+  flex: 0 0 auto;
+}
+
+.player-bar {
+  flex: 1;
+}
+
+/* 컴포넌트 스타일 */
+.player-info {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.player-info img {
+  width: 50px;
+  height: 50px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.song-artist {
+  font-size: 12px;
+  color: var(--sp-light);
+}
+
+.player-controls {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.player-controls button {
+  background: none;
+  border: none;
+  color: var(--sp-light);
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.player-bar {
+  height: 4px;
+  background-color: var(--sp-gray);
+  border-radius: 2px;
+}
+
+.progress {
+  width: 35%;
+  height: 100%;
+  background: var(--sp-green);
+  border-radius: 2px;
+}
+
+/* 4단계 - 세부 조정 + hover 효과 */
+.player-bar {
+  transition: height 0.3s ease;
+  cursor: pointer;
+}
+
+.player-bar:hover {
+  height: 10px;
+}
+
+.player-controls button {
+  transition: color 0.3s ease;
+}
+
+.player-controls button:hover {
+  color: var(--sp-white);
+}
+
+.play-btn {
+  transition: transform 0.3s ease;
+}
+
+.play-btn:hover {
+  transform: scale(1.3);
+}
+
+/* 5단계 - 반응처리  */
+@media (max-width: 768px) {
+  .sidebar {
+    display: none;
+  }
+  .main-content {
+    padding: 20px;
+  }
+
+  .main-content h2 {
+    font-size: 22px;
+  }
+
+  .album-card {
+    flex: 1 1 140px;
+    max-width: none;
+  }
+
+  .player-info {
+    flex: 1 1 auto;
+  }
+
+  .player-bar {
+    /* 좁은 화면에서 진행바가 아주 작아 보인다 
+    그래서 화면 아래로 위치를 조정해 보자 */
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    border-radius: 0;
+  }
+
+  .player {
+    position: fixed;
+  }
+}
