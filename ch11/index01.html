@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin-Dashboard</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <!-- 1. 사이드바 -->
+    <aside class="sidebar">
+      <div class="logo"><span class="logo-icon">A</span> Admin</div>
+
+      <div class="menu-group-label">메인</div>
+      <ul>
+        <li><a href="#" class="active">대시보드</a></li>
+        <li><a href="#">주문 관리</a></li>
+        <li><a href="#">상품 관리</a></li>
+      </ul>
+
+      <div class="menu-group-label">고객</div>
+      <ul>
+        <li><a href="#">회원 관리</a></li>
+        <li><a href="#">문의 내역</a></li>
+      </ul>
+
+      <div class="menu-group-label">기타</div>
+      <ul>
+        <li><a href="#">통계</a></li>
+        <li><a href="#">설정</a></li>
+      </ul>
+    </aside>
+
+    <!-- 2. 메인 컨텐츠 영역 -->
+    <div class="main-wrapper">
+      <!-- 헤더 -->
+      <header>
+        <div class="search-bar">
+          <input type="text" placeholder="주문번호, 상품명 검색" />
+        </div>
+        <div class="user-profile">
+          <div class="user-avatar">김</div>
+          <span>김관리</span>
+        </div>
+      </header>
+
+      <!-- 본문 컨텐츠 -->
+      <main class="container">
+        <h1 class="page-title">대시보드</h1>
+        <p class="page-subtitle">2026년 4월 13일 기준</p>
+
+        <!-- 지표 카드 (4개) -->
+        <div class="metrics-grid">
+          <div class="card">
+            <div class="card-title">오늘 매출</div>
+            <div class="card-value">2,847,000원</div>
+            <div class="card-badge badge-up">전일 대비 +12.5%</div>
+          </div>
+          <div class="card">
+            <div class="card-title">신규 주문</div>
+            <div class="card-value">128건</div>
+            <div class="card-badge badge-up">전일 대비 +8.2%</div>
+          </div>
+          <div class="card">
+            <div class="card-title">신규 회원</div>
+            <div class="card-value">34명</div>
+            <div class="card-badge badge-down">전일 대비 -3.1%</div>
+          </div>
+          <div class="card">
+            <div class="card-title">방문자</div>
+            <div class="card-value">5,241명</div>
+            <div class="card-badge badge-up">전일 대비 +21.7%</div>
+          </div>
+        </div>
+
+        <!-- 최근 주문 표 패널 -->
+        <div class="panel panel-table">
+          <h2 class="panel-title">최근 주문</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>주문번호</th>
+                <th>고객</th>
+                <th>상품</th>
+                <th>금액</th>
+                <th>상태</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>#20260413-001</td>
+                <td>이영희</td>
+                <td>무선 블루투스 이어폰</td>
+                <td>29,900원</td>
+                <td>
+                  <span class="status-badge status-success">배송완료</span>
+                </td>
+              </tr>
+              <tr>
+                <td>#20260413-002</td>
+                <td>박지훈</td>
+                <td>스테인리스 텀블러</td>
+                <td>15,900원</td>
+                <td>
+                  <span class="status-badge status-progress">배송중</span>
+                </td>
+              </tr>
+              <tr>
+                <td>#20260413-003</td>
+                <td>최민수</td>
+                <td>휴대용 보조배터리</td>
+                <td>22,900원</td>
+                <td>
+                  <span class="status-badge status-pending">결제대기</span>
+                </td>
+              </tr>
+              <tr>
+                <td>#20260413-004</td>
+                <td>정하늘</td>
+                <td>기계식 키보드</td>
+                <td>89,000원</td>
+                <td><span class="status-badge status-cancel">취소</span></td>
+              </tr>
+              <tr>
+                <td>#20260413-005</td>
+                <td>강수진</td>
+                <td>모니터 받침대</td>
+                <td>34,500원</td>
+                <td>
+                  <span class="status-badge status-success">배송완료</span>
+                </td>
+              </tr>
+              <tr>
+                <td>#20260413-006</td>
+                <td>윤태호</td>
+                <td>USB-C 허브</td>
+                <td>41,000원</td>
+                <td>
+                  <span class="status-badge status-progress">배송중</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 하단 차트 및 최근 활동 영역 (2:1) -->
+        <div class="bottom-grid">
+          <div class="panel">
+            <h2 class="panel-title" style="padding: 0">주간 매출</h2>
+            <div class="chart-container">
+              <div class="chart-bar-group">
+                <div class="chart-bar" style="height: 35%"></div>
+                <span class="chart-label">월</span>
+              </div>
+              <div class="chart-bar-group">
+                <div class="chart-bar" style="height: 65%"></div>
+                <span class="chart-label">화</span>
+              </div>
+              <div class="chart-bar-group">
+                <div class="chart-bar" style="height: 55%"></div>
+                <span class="chart-label">수</span>
+              </div>
+              <div class="chart-bar-group">
+                <div class="chart-bar" style="height: 85%"></div>
+                <span class="chart-label">목</span>
+              </div>
+              <div class="chart-bar-group">
+                <div class="chart-bar" style="height: 75%"></div>
+                <span class="chart-label">금</span>
+              </div>
+              <div class="chart-bar-group">
+                <div class="chart-bar" style="height: 100%"></div>
+                <span class="chart-label">토</span>
+              </div>
+              <div class="chart-bar-group">
+                <div class="chart-bar" style="height: 60%"></div>
+                <span class="chart-label">일</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <h2 class="panel-title" style="padding: 0">최근 활동</h2>
+            <div class="activity-list">
+              <div class="activity-item">
+                <div class="activity-avatar">이</div>
+                <div>
+                  <div><strong>이영희</strong>님이 주문했습니다</div>
+                  <div class="activity-time">3분 전</div>
+                </div>
+              </div>
+              <div class="activity-item">
+                <div class="activity-avatar">박</div>
+                <div>
+                  <div><strong>박지훈</strong>님이 회원가입했습니다</div>
+                  <div class="activity-time">12분 전</div>
+                </div>
+              </div>
+              <div class="activity-item">
+                <div class="activity-avatar">최</div>
+                <div>
+                  <div><strong>최민수</strong>님이 문의를 남겼습니다</div>
+                  <div class="activity-time">28분 전</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
