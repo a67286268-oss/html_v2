@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>index02 파일</h1>
+
+    <script>
+      console.log(" 단락 평가 ");
+
+      console.log("hello" || "world"); //hello가 true
+      console.log("" || "기본값"); //""가 false라서 뒤에값 기본값이 나온다
+      console.log(null || 0 || "world"); // null , 0 이 F라 T인 world출력
+      console.log(null || undefined); // 둘 다 F라면 뒤에값이 나온다.
+      // 논리 합은 왼쪽부터 가면서 T를 만나면 그값을 바로 돌려주고 멈춘다
+
+      // 2. 활용 : 값이 없으면 기본값을 써라 를 한줄로 코드를 작성할 수 있다.
+      let nickName = "";
+      let displayName = nickName || "익명";
+      console.log(displayName);
+
+      // 3. 논리곱 && 는 왼쪽 부터 보다가 Falsy를 만나면 그 값을 바로 돌려주고 멈춘다.
+      //               T  &&    T
+      console.log("hello" && "world");
+      console.log("" && "기본값");
+      console.log(null && 0 && "끝");
+      console.log(null && undefined);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      button {
+        padding: 8px 16px;
+        font-size: 16px;
+        margin-bottom: 20px;
+      }
+
+      .container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 15px;
+        width: 450px;
+      }
+
+      .box {
+        width: 100px;
+        height: 100px;
+        background-color: skyblue;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 15px;
+      }
+
+      .hide-display {
+        display: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>동적으로 요소 추가하기</h1>
+    <button onclick="addItem()">아이템 추가</button>
+    <button onclick="deleteItem()" id="btn">아이템 삭제</button>
+
+    <div class="container" id="boxContainer">
+      <div class="box">아이템 1</div>
+      <div class="box">아이템 2</div>
+      <div class="box">아이템 3</div>
+    </div>
+
+    <script>
+      let clickCount = 3;
+      const container = document.getElementById("boxContainer");
+
+      function addItem() {
+        clickCount += 1;
+
+        // createElement를 사용하면 기존 요소를 건드리지 않고 안전하게 추가할 수 있습니다.
+        let newBox = document.createElement("div");
+        newBox.className = "box";
+        newBox.textContent = "아이템 " + clickCount;
+
+        container.appendChild(newBox);
+      }
+
+      function deleteItem() {
+        // 컨테이너 안에 아이템이 남아있을 때만 마지막 요소를 삭제합니다.
+        const boxes = container.getElementsByClassName("box");
+        if (boxes.length > 0) {
+          container.removeChild(boxes[boxes.length - 1]);
+          clickCount = Math.max(0, clickCount - 1);
+        }
+      }
+    </script>
+  </body>
+</html>

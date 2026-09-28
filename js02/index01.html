@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>index01.html 파일</h1>
+    <div id="product-box"></div>
+    <script>
+      const productName = "무선마우스";
+      const price = 25000; 
+      const stock = 3;
+
+      // 지금까지 방식
+      const messege1 = productName +" 의 가격은 " + price + "이고, 재고는 " + stock + "개 남았습니다.";
+      console.log(messege1);
+
+      // 템플릿 리터럴 : 백틱`으로 감싸고 변수자리에 ${} 을 쓴다.
+      const messege2 = `${productName} 의 가격은 ${price} 이고 재고는 ${stock}개 남았습니다.`;
+      
+      // ${} 안에는 변수뿐 아니라 계산식, 함수 호출도 넣을 수 있다.
+    </script>
+  </body>
+</html>

@@ -1,12 +1,551 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movie</title>
-    <link rel="stylesheet" href="./style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <style>
+    /* ================================
+       :root 변수 설정
+    ================================ */
+    :root {
+      /* 사이드바 (어두운 영역) */
+      --ad-side: #1e293b;
+      --ad-side-text: #94a3b8;
+      --ad-side-active: #334155;
+
+      /* 본문 (밝은 영역) */
+      --ad-bg: #f1f5f9;
+      --ad-surface: #ffffff;
+      --ad-line: #e2e8f0;
+      --ad-text: #1e293b;
+      --ad-sub: #64748b;
+
+      --ad-primary: #4f46e5;
+      --ad-up: #16a34a;
+      --ad-down: #dc2626;
+
+      /* 상태 뱃지 배경/텍스트 */
+      --badge-success-bg: #dcfce7;
+      --badge-success-text: #166534;
+      --badge-progress-bg: #dbeafe;
+      --badge-progress-text: #1e40af;
+      --badge-pending-bg: #fef3c7;
+      --badge-pending-text: #92400e;
+      --badge-cancel-bg: #fee2e2;
+      --badge-cancel-text: #991b1b;
+
+      /* 레이아웃 치수 */
+      --sidebar-width: 240px;
+      --header-height: 60px;
+      --main-padding: 24px;
+      --card-padding: 18px;
+      --card-gap: 16px;
+      --chart-height: 180px;
+
+      /* 모서리 */
+      --radius-btn: 6px;
+      --radius-card: 10px;
+      --radius-badge: 20px;
+
+      /* 전환 효과 */
+      --transition-fast: all 0.15s ease-in-out;
+    }
+
+    /* ================================
+       1단계: 리셋 / 전역 스타일
+    ================================ */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, "Segoe UI", "Malgun Gothic", sans-serif;
+      background: var(--ad-bg);
+      color: var(--ad-text);
+      line-height: 1.5;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    /* ================================
+       2단계: 기본 데스크톱 레이아웃 (769px 이상)
+    ================================ */
+    .app-container {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* 사이드바 기본 (좌측 고정) */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: var(--sidebar-width);
+      height: 100vh;
+      background-color: var(--ad-side);
+      color: var(--ad-side-text);
+      display: flex;
+      flex-direction: column;
+      z-index: 100;
+      flex-shrink: 0;
+    }
+
+    .sidebar .logo {
+      height: var(--header-height);
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      font-size: 17px;
+      font-weight: 700;
+      color: #ffffff;
+      gap: 8px;
+    }
+
+    .sidebar .logo-icon {
+      background-color: var(--ad-primary);
+      color: #ffffff;
+      width: 28px;
+      height: 28px;
+      border-radius: var(--radius-btn);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+    }
+
+    .menu-group-label {
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--ad-sub);
+      padding: 16px 20px 6px;
+      letter-spacing: 0.5px;
+    }
+
+    .sidebar ul li a {
+      display: block;
+      padding: 10px 20px;
+      color: var(--ad-side-text);
+      font-size: 14px;
+      transition: var(--transition-fast);
+    }
+
+    .sidebar ul li a:hover,
+    .sidebar ul li a.active {
+      background-color: var(--ad-side-active);
+      color: #ffffff;
+      font-weight: 600;
+      border-radius: var(--radius-btn);
+    }
+
+    .sidebar ul li {
+      padding: 0 10px;
+    }
+
+    /* 메인 영역 */
+    .main-wrapper {
+      margin-left: var(--sidebar-width);
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* 상단 검색바 및 프로필 */
+    header {
+      height: var(--header-height);
+      background-color: var(--ad-surface);
+      border-bottom: 1px solid var(--ad-line);
+      padding: 0 var(--main-padding);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .search-bar {
+      flex: 1;
+      max-width: 320px;
+    }
+
+    .search-bar input {
+      width: 100%;
+      padding: 8px 12px;
+      font-size: 13px;
+      color: var(--ad-text);
+      background-color: var(--ad-bg);
+      border: 1px solid var(--ad-line);
+      border-radius: var(--radius-btn);
+      outline: none;
+    }
+
+    .user-avatar {
+      width: 32px;
+      height: 32px;
+      background-color: var(--ad-primary);
+      color: #ffffff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    /* 컨텐츠 본문 */
+    .container {
+      padding: var(--main-padding);
+    }
+
+    .page-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--ad-text);
+    }
+
+    .page-subtitle {
+      font-size: 13px;
+      color: var(--ad-sub);
+      margin-top: 4px;
+      margin-bottom: 20px;
+    }
+
+    /* 통계 카드 Grid */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--card-gap);
+      margin-bottom: var(--card-gap);
+    }
+
+    .card {
+      background-color: var(--ad-surface);
+      border: 1px solid var(--ad-line);
+      border-radius: var(--radius-card);
+      padding: var(--card-padding);
+    }
+
+    .card-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ad-sub);
+      margin-bottom: 8px;
+    }
+
+    .card-value {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--ad-text);
+      margin-bottom: 6px;
+    }
+
+    .card-badge {
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .badge-up { color: var(--ad-up); }
+    .badge-down { color: var(--ad-down); }
+
+    /* 표(Table) 카드 */
+    .panel {
+      background-color: var(--ad-surface);
+      border: 1px solid var(--ad-line);
+      border-radius: var(--radius-card);
+      padding: var(--card-padding);
+      margin-bottom: var(--card-gap);
+    }
+
+    .panel-table {
+      padding: var(--card-padding) 0 0 0;
+      overflow-x: auto;
+    }
+
+    .panel-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--ad-text);
+    }
+
+    .panel-table .panel-title {
+      padding: 0 var(--card-padding);
+      margin-bottom: 16px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      white-space: nowrap;
+    }
+
+    th {
+      background-color: var(--ad-bg);
+      color: var(--ad-sub);
+      font-size: 13px;
+      font-weight: 500;
+      padding: 10px 18px;
+      border-bottom: 1px solid var(--ad-line);
+    }
+
+    td {
+      font-size: 13px;
+      color: var(--ad-text);
+      padding: 12px 18px;
+      border-bottom: 1px solid var(--ad-line);
+    }
+
+    .status-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: var(--radius-badge);
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .status-success { background-color: var(--badge-success-bg); color: var(--badge-success-text); }
+    .status-progress { background-color: var(--badge-progress-bg); color: var(--badge-progress-text); }
+
+    /* ================================
+       3단계: 좁은 화면 전용 반응형 (768px 이하)
+       - 첨부해주신 이미지 형태 구현
+    ================================ */
+    @media (max-width: 768px) {
+      .app-container {
+        flex-direction: column;
+      }
+
+      /* 사이드바 -> 상단 가로 헤더 네비게이션으로 변경 */
+      .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+        padding-bottom: 12px;
+      }
+
+      .menu-group-label {
+        display: none; /* 모바일에서 그룹 라벨 숨김 */
+      }
+
+      .sidebar ul {
+        display: flex;
+        overflow-x: auto; /* 메뉴가 많을 시 가로 스크롤 지원 */
+        padding: 0 8px;
+        white-space: nowrap;
+      }
+
+      .sidebar ul li {
+        padding: 0 4px;
+      }
+
+      .sidebar ul li a {
+        padding: 6px 12px;
+        font-size: 13px;
+      }
+
+      /* 메인 컨테이너 여백 리셋 */
+      .main-wrapper {
+        margin-left: 0;
+      }
+
+      /* 메인 영역 패딩 축소 */
+      .container {
+        padding: 16px;
+      }
+
+      /* 통계 카드 1열(세로) 배치 */
+      .metrics-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
-<body>
-    
-</body>
+  <body>
+    <aside class="sidebar">
+      <div class="logo"><span class="logo-icon">A</span> Admin</div>
+
+      <div class="menu-group-label">메인</div>
+      <ul>
+        <li><a href="#" class="active">대시보드</a></li>
+        <li><a href="#">주문 관리</a></li>
+        <li><a href="#">상품 관리</a></li>
+      </ul>
+
+      <div class="menu-group-label">고객</div>
+      <ul>
+        <li><a href="#">회원 관리</a></li>
+        <li><a href="#">문의 내역</a></li>
+      </ul>
+
+      <div class="menu-group-label">기타</div>
+      <ul>
+        <li><a href="#">통계</a></li>
+        <li><a href="#">설정</a></li>
+      </ul>
+    </aside>
+
+    <!-- 메인 영역 -->
+    <div class="main-wrapper">
+      <header>
+        <div class="search-bar">
+          <input type="text" placeholder="주문번호, 상품명 검색" />
+        </div>
+        <div class="user-profile">
+          <div class="user-avatar">김</div>
+          <span>김관리</span>
+        </div>
+      </header>
+
+      <main class="container">
+        <h1 class="page-title">대시보드</h1>
+        <p class="page-subtitle">2026년 9월 2일 기준</p>
+
+        <!-- 통계 카드 -->
+        <div class="metrics-grid">
+          <div class="card">
+            <div class="card-title">오늘 매출</div>
+            <div class="card-value">2,847,000원</div>
+            <div class="card-badge badge-up">전일 대비 +12.5%</div>
+          </div>
+          <div class="card">
+            <div class="card-title">신규 주문</div>
+            <div class="card-value">128건</div>
+            <div class="card-badge badge-up">전일 대비 +8.2%</div>
+          </div>
+          <div class="card">
+            <div class="card-title">신규 회원</div>
+            <div class="card-value">34명</div>
+            <div class="card-badge badge-down">전일 대비 -3.1%</div>
+          </div>
+          <div class="card">
+            <div class="card-title">방문자</div>
+            <div class="card-value">5,241명</div>
+            <div class="card-badge badge-up">전일 대비 +21.7%</div>
+          </div>
+        </div>
+
+        <!-- 최근 주문 -->
+        <div class="panel panel-table">
+          <h2 class="panel-title">최근 주문</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>주문번호</th>
+                <th>고객</th>
+                <th>상품</th>
+                <th>금액</th>
+                <th>상태</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>#20260902-001</td>
+                <td>이영희</td>
+                <td>무선 블루투스 이어폰</td>
+                <td>29,900원</td>
+                <td>
+                  <span class="status-badge status-success">배송완료</span>
+                </td>
+              </tr>
+              <tr>
+                <td>#20260902-002</td>
+                <td>박지훈</td>
+                <td>스테인리스 텀블러</td>
+                <td>15,900원</td>
+                <td>
+                  <span class="status-badge status-progress">배송중</span>
+                </td>
+              </tr>
+              <tr>
+                <td>#20260902-003</td>
+                <td>최민수</td>
+                <td>휴대용 보조배터리</td>
+                <td>22,900원</td>
+                <td>
+                  <span class="status-badge status-pending">결제대기</span>
+                </td>
+              </tr>
+              <tr>
+                <td>#20260902-004</td>
+                <td>정하늘</td>
+                <td>기계식 키보드</td>
+                <td>89,000원</td>
+                <td><span class="status-badge status-cancel">취소</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 하단 2:1 레이아웃 -->
+        <div class="bottom-grid">
+          <div class="panel">
+            <h2 class="panel-title">주간 매출</h2>
+            <div class="chart-container">
+              <div class="chart-bar-group">
+                <div class="chart-bar" style="height: 35%"></div>
+                <span class="chart-label">월</span>
+              </div>
+              <div class="chart-bar-group">
+                <div class="chart-bar" style="height: 65%"></div>
+                <span class="chart-label">화</span>
+              </div>
+              <div class="chart-bar-group">
+                <div class="chart-bar" style="height: 55%"></div>
+                <span class="chart-label">수</span>
+              </div>
+              <div class="chart-bar-group">
+                <div class="chart-bar" style="height: 85%"></div>
+                <span class="chart-label">목</span>
+              </div>
+              <div class="chart-bar-group">
+                <div class="chart-bar" style="height: 75%"></div>
+                <span class="chart-label">금</span>
+              </div>
+              <div class="chart-bar-group">
+                <div class="chart-bar" style="height: 100%"></div>
+                <span class="chart-label">토</span>
+              </div>
+              <div class="chart-bar-group">
+                <div class="chart-bar" style="height: 60%"></div>
+                <span class="chart-label">일</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <h2 class="panel-title">최근 활동</h2>
+            <div class="activity-list">
+              <div class="activity-item">
+                <div class="activity-avatar">이</div>
+                <div>
+                  <div><strong>이영희</strong>님이 주문했습니다</div>
+                  <div class="activity-time">3분 전</div>
+                </div>
+              </div>
+              <div class="activity-item">
+                <div class="activity-avatar">박</div>
+                <div>
+                  <div><strong>박지훈</strong>님이 회원가입했습니다</div>
+                  <div class="activity-time">12분 전</div>
+                </div>
+              </div>
+              <div class="activity-item">
+                <div class="activity-avatar">최</div>
+                <div>
+                  <div><strong>최민수</strong>님이 문의를 남겼습니다</div>
+                  <div class="activity-time">28분 전</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
 </html>

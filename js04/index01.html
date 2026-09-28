@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>js index.html</h1>
+    <p>첫번째 문단</p>
+    <p>두번째 문단</p>
+
+    <script>
+        //1. document는 DOM트리의 뿌리다. window.document에서 window는 생략가능
+
+        console.log(document);
+        console.log(document.body);
+
+        //2. 트리는 부모와 자식 관계로 이어져 있다.
+        console.log(document.body.children);
+        console.log(document.body.children[0]); // h1요소
+    </script>
+    
+</body>
+</html>

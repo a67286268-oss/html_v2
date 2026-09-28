@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
-    <!-- 1. 사이드바 -->
     <aside class="sidebar">
       <div class="logo"><span class="logo-icon">A</span> Admin</div>
 
@@ -31,9 +30,8 @@
       </ul>
     </aside>
 
-    <!-- 2. 메인 컨텐츠 영역 -->
+    <!-- 메인 영역 -->
     <div class="main-wrapper">
-      <!-- 헤더 -->
       <header>
         <div class="search-bar">
           <input type="text" placeholder="주문번호, 상품명 검색" />
@@ -44,12 +42,11 @@
         </div>
       </header>
 
-      <!-- 본문 컨텐츠 -->
       <main class="container">
         <h1 class="page-title">대시보드</h1>
-        <p class="page-subtitle">2026년 4월 13일 기준</p>
+        <p class="page-subtitle">2026년 9월 2일 기준</p>
 
-        <!-- 지표 카드 (4개) -->
+        <!-- 통계 카드 -->
         <div class="metrics-grid">
           <div class="card">
             <div class="card-title">오늘 매출</div>
@@ -73,7 +70,7 @@
           </div>
         </div>
 
-        <!-- 최근 주문 표 패널 -->
+        <!-- 최근 주문 -->
         <div class="panel panel-table">
           <h2 class="panel-title">최근 주문</h2>
           <table>
@@ -88,7 +85,7 @@
             </thead>
             <tbody>
               <tr>
-                <td>#20260413-001</td>
+                <td>#20260902-001</td>
                 <td>이영희</td>
                 <td>무선 블루투스 이어폰</td>
                 <td>29,900원</td>
@@ -97,7 +94,7 @@
                 </td>
               </tr>
               <tr>
-                <td>#20260413-002</td>
+                <td>#20260902-002</td>
                 <td>박지훈</td>
                 <td>스테인리스 텀블러</td>
                 <td>15,900원</td>
@@ -106,7 +103,7 @@
                 </td>
               </tr>
               <tr>
-                <td>#20260413-003</td>
+                <td>#20260902-003</td>
                 <td>최민수</td>
                 <td>휴대용 보조배터리</td>
                 <td>22,900원</td>
@@ -115,38 +112,20 @@
                 </td>
               </tr>
               <tr>
-                <td>#20260413-004</td>
+                <td>#20260902-004</td>
                 <td>정하늘</td>
                 <td>기계식 키보드</td>
                 <td>89,000원</td>
                 <td><span class="status-badge status-cancel">취소</span></td>
               </tr>
-              <tr>
-                <td>#20260413-005</td>
-                <td>강수진</td>
-                <td>모니터 받침대</td>
-                <td>34,500원</td>
-                <td>
-                  <span class="status-badge status-success">배송완료</span>
-                </td>
-              </tr>
-              <tr>
-                <td>#20260413-006</td>
-                <td>윤태호</td>
-                <td>USB-C 허브</td>
-                <td>41,000원</td>
-                <td>
-                  <span class="status-badge status-progress">배송중</span>
-                </td>
-              </tr>
             </tbody>
           </table>
         </div>
 
-        <!-- 하단 차트 및 최근 활동 영역 (2:1) -->
+        <!-- 하단 2:1 레이아웃 -->
         <div class="bottom-grid">
           <div class="panel">
-            <h2 class="panel-title" style="padding: 0">주간 매출</h2>
+            <h2 class="panel-title">주간 매출</h2>
             <div class="chart-container">
               <div class="chart-bar-group">
                 <div class="chart-bar" style="height: 35%"></div>
@@ -180,7 +159,7 @@
           </div>
 
           <div class="panel">
-            <h2 class="panel-title" style="padding: 0">최근 활동</h2>
+            <h2 class="panel-title">최근 활동</h2>
             <div class="activity-list">
               <div class="activity-item">
                 <div class="activity-avatar">이</div>
