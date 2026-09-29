@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>index01 파일</h1>
+
+    <script>
+        // 코드가 점점 안으로 파고드는 피라미드 형태
+        setTimeout(function() {
+            console.log("A작업 완료")
+
+            setTimeout(function() {
+                console.log("B작업 완료")
+
+                setTimeout(function() {
+                    console.log("C작업 완료")
+                }, 2000)
+
+            }, 2000)
+
+        }, 2000);
+
+        // 테스트
+        console.log("여기 코드는 언제 실행이 될까?")
+
+        // 순차적인 비동기 작업을 처리하기 위해서 과거에는 이렇게 콜백을 중첩해서 사용했다.
+        // 단계가 늘수록 읽기 어렵고 에러처리가 어려워지는 것을 콜백 지옥이라고 부른다.
+        // 그래서 이문제를 해결하고 비동기 코드를 평평하게 쓰기 위해서 promise가 도입되었다.
+    </script>
+    
+</body>
+</html>
